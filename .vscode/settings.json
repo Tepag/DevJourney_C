@@ -1,0 +1,25 @@
+{
+    "files.associations": {
+        "algorithm": "c",
+        "time.h": "c",
+        "__hash_table": "c",
+        "__split_buffer": "c",
+        "atomic": "c",
+        "ios": "c",
+        "string": "c",
+        "system_error": "c",
+        "unordered_map": "c",
+        "vector": "c",
+        "string.h": "c",
+        "__bit_reference": "c",
+        "array": "c",
+        "iterator": "c",
+        "memory": "c",
+        "string_view": "c",
+        "e15_3": "c",
+        "sstream": "c",
+        "limits": "c",
+        "ratio": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
