@@ -10,10 +10,11 @@ all’ordinamento alfabetico e restituisce:
 #include <stdio.h>
 
 int strcmpRicorsiva(char s1[], char s2[], int i);
+int strcmpRicorsivaV2(char s1[], char s2[]);
 
 int main()
 {
-    printf("%d", strcmpRicorsiva("A", "ziao", 0));
+    printf("%d", strcmpRicorsivaV2("z", "aiao"));
     return 0;
 }
 
@@ -40,4 +41,30 @@ int strcmpRicorsiva(char s1[], char s2[], int i)
         return 0;
     }
     return strcmpRicorsiva(s1, s2, i + 1);
+}
+
+int strcmpRicorsivaV2(char s1[], char s2[])
+{
+    static int i = 0;
+    if (s1[i] == '\0' && s2[i] != '\0')
+    {
+        return -1;
+    }
+    if (s2[i] == '\0' && s1[i] != '\0')
+    {
+        return 1;
+    }
+    if (s1[i] > s2[i])
+    {
+        return -1;
+    }
+    if (s1[i] < s2[i])
+    {
+        return 1;
+    }
+    if (s1[i] == s2[i] && s1[i] == '\0')
+    {
+        return 0;
+    }
+    strcmpRicorsivaV2(s1, s2);
 }
