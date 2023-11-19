@@ -19,7 +19,8 @@
         "e15_3": "c",
         "sstream": "c",
         "limits": "c",
-        "ratio": "c"
+        "ratio": "c",
+        "stdio.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
