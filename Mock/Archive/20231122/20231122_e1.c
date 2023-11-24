@@ -19,7 +19,7 @@ int mystrlen(char str[])
         j++;
         return mystrlen(str) + 1;
     }
-    else
+    elseq
     {
         return 0;
     }

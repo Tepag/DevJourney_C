@@ -1,0 +1,1 @@
+// programma che contiene un sottoprogramma/funzione che ritorna un semplice numero senza fare altro

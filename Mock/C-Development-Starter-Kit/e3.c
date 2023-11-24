@@ -1,0 +1,1 @@
+// stampa il quoziente di due numeri (usa i float)
