@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bootstrap Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to My Bootstrap Page</h1>
+        <p>This is a sample page using Bootstrap.</p>
+        <button class="btn btn-primary" onclick="animateButton()">Click Me</button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script>
+        function animateButton() {
+            var button = document.querySelector('.btn');
+            button.classList.add('animated', 'bounce');
+            setTimeout(function() {
+                button.classList.remove('animated', 'bounce');
+            }, 1000);
+        }
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
+
