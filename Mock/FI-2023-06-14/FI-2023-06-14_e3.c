@@ -27,37 +27,31 @@ float voto_hotel(char* path, char* name, int max){
     float mediaS, mediaPu, mediaPo;
     float sumS=0, sumPu=0, sumPo=0;
     float cntS=0, cntPu=0, cntPo=0;
-    int iTmp;
     char tmp;
+    path[strlen(path)-1] = '\0'; // questa riga di codice mi riaggiusta la path che è qualcosa del genere: "./hotel1.txt" + '\n' + '\0', quindi metto uno \0 al posto di \n
+
     FILE* fpIn = fopen(path, "r");
 
-    char test[10];
-
-    //fread(&tmp, sizeof(char), 1, fpIn);
-    printf("\n\n%c\n\n", tmp);
-
-    //fgets(test, max, fpIn);
-    //puts(test);
+    fgets(name, max, fpIn);
     
-    //fgets(name, max, fpIn);
-    /*
+   
     do{
-        fread(&iTmp, sizeof(int), 1, fpIn);
-        sumS += (float)iTmp;
+        fread(&tmp, sizeof(char), 1, fpIn);
+        sumS += (float)(tmp-'0');
         cntS++;
         fread(&tmp, sizeof(char), 1, fpIn);
     }while(tmp!='\n');
-
+    
     do{
-        fread(&iTmp, sizeof(int), 1, fpIn);
-        sumPu += (float)iTmp;
+        fread(&tmp, sizeof(char), 1, fpIn);
+        sumPu += (float)(tmp-'0');
         cntPu++;
         fread(&tmp, sizeof(char), 1, fpIn);
     }while(tmp!='\n');
 
     do{
-        fread(&iTmp, sizeof(int), 1, fpIn);
-        sumPo += (float)iTmp;
+        fread(&tmp, sizeof(char), 1, fpIn);
+        sumPo += (float)(tmp-'0');
         cntPo++;
         fread(&tmp, sizeof(char), 1, fpIn);
     }while(tmp!='\n');
@@ -69,11 +63,8 @@ float voto_hotel(char* path, char* name, int max){
 
     fclose(fpIn);
     
-    */
-
-    //return (mediaS+mediaPo+mediaPu)/3;
-
-    return 0;
+    
+    return (mediaS+mediaPo+mediaPu)/3;
 
 }
 
@@ -88,31 +79,20 @@ hotel incubo(char* path, int max, int maxHotel){
     char hotelpath[max];
     int cnt;
 
-    fgets(hotelpath, max, fpIn);
-    printf("\n\n%f\n\n", voto_hotel(hotelpath, arr[i].name, max));
-    
-
     while(fgets(hotelpath, max, fpIn)!=NULL){
-        printf("\n\n%s\n\n", hotelpath);
-        /*
-        arr[i].media = voto_hotel(&hotelpath[0], &(arr[i].name[0]), max);
+        arr[i].media = voto_hotel(hotelpath, arr[i].name, max);
         i++;
-        */
     }
     cnt=i;
 
-    /*
+    
     for(i=0;i<cnt;i++){
         if(arr[minI].media>arr[i].media){
             minI = i;
         }
-    }*/
+    }
 
-    hotel test;
-    test.media = 3.3;
-    strcpy(test.name, "ciao");
 
-    //return arr[minI];
-    return test;
+    return arr[minI];
 }
 
