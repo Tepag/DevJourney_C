@@ -1,0 +1,2 @@
+./hotel1.txt
+./hotel2.txt

@@ -20,7 +20,8 @@
         "sstream": "c",
         "limits": "c",
         "ratio": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "typeinfo": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
