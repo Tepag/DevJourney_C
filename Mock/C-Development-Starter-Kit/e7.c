@@ -1,1 +1,0 @@
-// basandoti sull'esercizio e6, usa il puntatore a struttura per stampare i due valori
