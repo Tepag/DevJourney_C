@@ -1,70 +1,81 @@
+/**
+ * @file FI-2023-08-28_e2.c
+ * @author Tepag (z190tpg@gmail.com)
+ * @brief
+ * @version 0.1
+ * @date 2024-01-18
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 /*
-Si formuli la funzione strcmpRicorsiva(char s1[], char s2[]), come versione ricorsiva della ben nota
-funzione  strcmp(char  s1[],  char  s2[]),  definita  in  string.h,  che  confronta  due  stringhe  in  base
-all’ordinamento alfabetico e restituisce:
-● 0 se le stringhe sono uguali,
-● un valore < 0 se s1 precede alfabeticamente s2
-● un valore > 0 se s1 segue alfabeticamente s2
+    Si supponga di avere, già presente in memoria (non è quindi
+    necessario crearla), una lista che memorizza una sequenza di interi. I nodi della lista sono definiti in base
+    al seguente tipo:
+    typedef struct nodo {
+    int val;
+    struct nodo * next;
+    } Nodo;
+    Si scriva una funzione ricorsiva in C che, ricevuta come parametro la testa della lista, modifichi i valori
+    nella lista sommando a ogni elemento il valore dell’elemento precedente. Il primo elemento resta
+    invariato.
+    Es. : Data la lista 1-> 2-> 10-> 3-> 6 la funzione la modificherà in 1 -> 3 -> 12 -> 13 -> 9
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 
-int strcmpRicorsiva(char s1[], char s2[], int i);
-int strcmpRicorsivaV2(char s1[], char s2[]);
+typedef struct nodo
+{
+    int val;
+    struct nodo *next;
+} Nodo;
+
+void addElement(Nodo *head, int newVal)
+{
+    while (head->next != NULL)
+    {
+        head = head->next;
+    }
+    head->next = (Nodo *)malloc(sizeof(Nodo));
+    head = head->next;
+    head->val = newVal;
+    head->next = NULL;
+}
+
+void printList(Nodo *head)
+{
+    if (head != NULL)
+    {
+        printf("%d ", head->val);
+        printList(head->next);
+    }
+}
+
+void modifyList(Nodo *prec, Nodo *curr)
+{
+    if (curr != NULL)
+    {
+        modifyList(prec->next, curr->next);
+        curr->val += prec->val;
+    }
+}
 
 int main()
 {
-    printf("%d", strcmpRicorsivaV2("z", "aiao"));
+    Nodo *head = (Nodo *)malloc(sizeof(Nodo));
+    head->val = 1;
+    head->next = NULL;
+
+    addElement(head, 2);
+    addElement(head, 10);
+    addElement(head, 3);
+    addElement(head, 6);
+
+    modifyList(head, head->next);
+
+    printList(head);
+
     return 0;
-}
-
-int strcmpRicorsiva(char s1[], char s2[], int i)
-{
-    if (s1[i] == '\0' && s2[i] != '\0')
-    {
-        return -1;
-    }
-    if (s2[i] == '\0' && s1[i] != '\0')
-    {
-        return 1;
-    }
-    if (s1[i] > s2[i])
-    {
-        return -1;
-    }
-    if (s1[i] < s2[i])
-    {
-        return 1;
-    }
-    if (s1[i] == s2[i] && s1[i] == '\0')
-    {
-        return 0;
-    }
-    return strcmpRicorsiva(s1, s2, i + 1);
-}
-
-int strcmpRicorsivaV2(char s1[], char s2[])
-{
-    static int i = 0;
-    if (s1[i] == '\0' && s2[i] != '\0')
-    {
-        return -1;
-    }
-    if (s2[i] == '\0' && s1[i] != '\0')
-    {
-        return 1;
-    }
-    if (s1[i] > s2[i])
-    {
-        return -1;
-    }
-    if (s1[i] < s2[i])
-    {
-        return 1;
-    }
-    if (s1[i] == s2[i] && s1[i] == '\0')
-    {
-        return 0;
-    }
-    strcmpRicorsivaV2(s1, s2);
 }

@@ -9,11 +9,11 @@ e altri parametri eventualmente ritenuti necessari, restituisce 1 se tutte lerig
 degli elementi pari a val,0 altrimenti
 */
 
-int check(int mat[][N], int checkValue, int i, int j, int sum);
+int check(int mat[][N], int checkValue, int i, int j, int sum, int flagCounter);
 
 int main()
 {
-    int mat[M][N] = {{7, 7, 1}, {4, 5, 6}, {7, 8, 9}};
+    int mat[M][N] = {{7, 7, 1}, {15, 0, 0}, {9, 6, 0}};
     int checkValue = 15;
 
     // blocco stampa della matrice
@@ -26,12 +26,12 @@ int main()
         }
         printf("\n");
     }*/
-    printf("%d\n", check(mat, checkValue, 0, 0, 0));
+    printf("%d\n", check(mat, checkValue, 0, 0, 0, 0));
 
     return 0;
 }
 
-int check(int mat[][N], int checkValue, int i, int j, int sum)
+int check(int mat[][N], int checkValue, int i, int j, int sum, int flagCounter)
 {
     /*
         il modo in cui ragiono è la seguente:
@@ -42,23 +42,32 @@ int check(int mat[][N], int checkValue, int i, int j, int sum)
 
     if (i >= M)
     {
-        return 0;
+        // printf("flag= %d", flagCounter);
+        if (flagCounter == M)
+            return 1;
+        else
+        {
+            return 0;
+        }
     }
 
-    if (j == N)
+    if (j >= N)
     {
         printf("sum: %d\n", sum);
         if (sum == checkValue)
         {
-            return 1;
+            return check(mat, checkValue, i + 1, 0, 0, flagCounter + 1);
         }
-        return check(mat, checkValue, j + i, 0, 0);
+        else
+        {
+            return check(mat, checkValue, i + 1, 0, 0, flagCounter);
+        }
     }
 
     if (j < N)
     {
         sum += mat[i][j];
-        return check(mat, checkValue, i, j + 1, sum);
+        return check(mat, checkValue, i, j + 1, sum, flagCounter);
     }
 
     return 0;
